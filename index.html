@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ottakringer Handyshop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #121212;
+            color: #ddd;
+            line-height: 1.6;
+        }
+
+        /* Header ohne Hintergrundbild */
+        header {
+            background-color: #222; /* Dunkler Hintergrund für den Header */
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 3.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        header p {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-top: 10px;
+            color: white;
+        }
+
+        /* Adresse, Telefon, Öffnungszeiten unter der Überschrift */
+        .header-contact {
+            background-color: #222;
+            padding: 15px;
+            text-align: center;
+            color: white;
+        }
+
+        .header-contact p {
+            font-size: 1.2rem;
+            margin: 5px 0;
+        }
+
+        .header-contact .phone,
+        .header-contact .hours {
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #222;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            margin: 0 25px;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #e74c3c;
+            border-bottom: 2px solid #e74c3c;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #000; /* Schwarzer Hintergrund für den gesamten mittleren Bereich */
+            color: #fff; /* Helle Schrift für besseren Kontrast */
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #e74c3c;
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 0 10%;
+        }
+
+        .card {
+            background-color: #c0392b; /* Dunkelrote Karten */
+            border-radius: 8px;
+            width: 320px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .card p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: #ddd;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .card p:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .card .details {
+            display: none;
+            font-size: 1rem;
+            color: #ddd;
+            margin-top: 20px;
+            line-height: 1.6;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 5px;
+        }
+
+        .card button {
+            background-color: #e74c3c;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .card button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Contact Section */
+        #kontakt {
+            background-color: #222;
+            color: white;
+            padding: 60px 20px;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #1a1a1a;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            font-size: 1rem;
+            color: #ddd;
+            background-color: #333;
+        }
+
+        .contact-form button {
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            color: #e74c3c;
+        }
+
+        /* Shipping info at the top */
+        .shipping-info {
+            background-color: #444;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Address and Contact Info Section */
+        .address-info {
+            background-color: #111;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .address-info p {
+            margin: 5px 0;
+        }
+
+        .address-info .phone {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .address-info .hours {
+            font-size: 1.4rem;
+            font-weight: 500;
+        }
+
+        /* Section for Paketzustellung */
+        #paketzustellung {
+            padding: 80px 20px;
+        }
+
+        /* Section for Drucken */
+        #drucken {
+            padding: 80px 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cards {
+                flex-direction: column;
+            }
+
+            .card {
+                width: 90%;
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Ottakringer Handyshop</h1>
+        <p>Willkommen bei Ihrem Experten für Handys, SIM-Karten, Guthaben und Paketzustellungen!</p>
+    </header>
+
+    <!-- Adresse, Telefon, Öffnungszeiten -->
+    <div class="header-contact">
+        <p>Adresse: Thaliastraße 137, 1160 Wien</p>
+        <p class="phone">Telefon: +43 681 20334066</p>
+        <p class="hours">Öffnungszeiten: Mo - Fr: 9:30 - 19:30</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#simkarten">SIM Karten</a>
+        <a href="#guthaben">Guthaben Aufladen</a>
+        <a href="#handys">Handys Kaufen</a>
+        <a href="#paketzustellung">Paketzustellung</a>
+        <a href="#drucken">Drucken</a>
+        <a href="#kontakt">Kontakt</a>
+    </nav>
+
+    <!-- SIM-Karten Kaufen -->
+    <section id="simkarten">
+        <h2 class="section-title">SIM Karten Kaufen</h2>
+        <div class="cards">
+            <div class="card">
+                <img src="https://tele2iot.com/wp-content/uploads/2023/02/SIM_GettyImages-155286601-scaled.jpg.webp" alt="SIM Karten">
+                <h3>SIM Karten Kaufen</h3>
+                <p>Wählen Sie die beste SIM-Karte für Ihr Gerät und Ihre Bedürfnisse.</p>
+                <button onclick="toggleDetails(this)">Mehr erfahren</button>
+                <div class="details">
+                    <p>Entdecken Sie unsere Auswahl an SIM-Karten für nationale und internationale Nutzung.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guthaben Aufladen -->
+    <section id="guthaben">
+        <h2 class="section-title">Guthaben Aufladen</h2>
+        <div class="cards">
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Prepaid_service_cards_in_Germany_%282%29.jpg/1200px-Prepaid_service_cards_in_Germany_%282%29.jpg" alt="Guthaben Aufladen">
+                <h3>Guthaben Aufladen</h3>
+                <p>Ganz einfach Ihr Handy-Guthaben aufladen.</p>
+                <button onclick="toggleDetails(this)">Mehr erfahren</button>
+                <div class="details">
+                    <p>Wir bieten die Möglichkeit, verschiedene Anbieter-Guthaben direkt bei uns aufzuladen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Handys Kaufen -->
+    <section id="handys">
+        <h2 class="section-title">Handys Kaufen</h2>
+        <div class="cards">
+            <div class="card">
+                <img src="https://images.discountsforcarers.com/860x484/offer/15419/photo.jpg" alt="Geräte kaufen">
+                <h3>Handys und Geräte kaufen</h3>
+                <p>Finden Sie das perfekte Smartphone und Zubehör.</p>
+                <button onclick="toggleDetails(this)">Mehr erfahren</button>
+                <div class="details">
+                    <p>Wir bieten eine große Auswahl an Handys und Zubehör von bekannten Marken.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paketzustellung -->
+    <section id="paketzustellung">
+        <h2 class="section-title">Paketzustellung</h2>
+        <div class="cards">
+            <div class="card">
+                <img src="https://unsere.post.at/resources/images/2024/4/25/733/header-paket-beschriften-v6_556_346_crop_b622523b95097d498a4dce946266126e.jpg" alt="Paketzustellung">
+                <h3>Paketzustellung</h3>
+                <p>Wählen Sie DPD, GLS oder die Post für Ihre Paketzustellungen!</p>
+                <button onclick="toggleDetails(this)">Mehr erfahren</button>
+                <div class="details">
+                    <p>Wir bieten Ihnen bequeme Optionen für den Versand Ihrer Pakete, je nach Ihren Vorlieben.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drucken -->
+    <section id="drucken">
+        <h2 class="section-title">Drucken</h2>
+        <div class="cards">
+            <div class="card">
+                <img src="https://www.tintencenter.com/blog/wp-content/uploads/2021/03/drucker-nachhaltigkeit.jpg" alt="Drucken">
+                <h3>Drucken</h3>
+                <p>Nachhaltiger und zuverlässiger Druckservice für Ihre Bedürfnisse.</p>
+                <button onclick="toggleDetails(this)">Mehr erfahren</button>
+                <div class="details">
+                    <p>Nutzen Sie unseren zuverlässigen Druckservice, um Ihre Dokumente nachhaltig zu drucken.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="kontakt">
+        <h2 class="section-title">Kontakt</h2>
+        <div class="contact-form">
+            <input type="text" placeholder="Ihr Name" required>
+            <input type="email" placeholder="Ihre E-Mail-Adresse" required>
+            <textarea placeholder="Ihre Nachricht" required></textarea>
+            <button type="submit">Absenden</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Ottakringer Handyshop. Alle Rechte vorbehalten.</p>
+    </footer>
+
+    <script>
+        function toggleDetails(button) {
+            const details = button.closest('.card').querySelector('.details');
+            details.style.display = (details.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
